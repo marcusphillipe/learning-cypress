@@ -9,23 +9,16 @@ const personalDetailsPage = new PersonalDetailsPage()
 
 describe('Orange HRM Test', () => {
 
-  const selectorsList = {
-
-  }
-
-  it('Login - Success', () => {
+  it('User Info Update - Success', () => {
     loginPage.accessLoginPage()
-    loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
-    dashboardPage.confirmDashboardPage()
-    personalDetailsPage.accessPersonalDetailsPage()
-    personalDetailsPage.changePersonalInfo()
-  })
+    loginPage.loginWithCorrectUser(userData.userSucess.username, userData.userSucess.password)
 
-  //it.skip('Login - Fail', () => {
-  //  cy.visit('/auth/login')
-  //  cy.get(selectorsList.usernameField).type(userData.userFail.username)
-  //  cy.get(selectorsList.passwordField).type(userData.userFail.password)
-  //  cy.get(selectorsList.loginButton).click()
-  //  cy.get(selectorsList.wrongCredentialAlert)
-  //})
+    dashboardPage.confirmDashboardPage()
+
+    personalDetailsPage.accessPersonalDetailsPage()
+    personalDetailsPage.fillPersonalDetais('First Name', 'Last Name', 'Nickname')
+    personalDetailsPage.fillEmployeeDetails('EmployID', 'OtherID', 'Drivers Number', '2025-10-15')
+    personalDetailsPage.fillStatus()
+    personalDetailsPage.saveForm()
+  }) 
 })
